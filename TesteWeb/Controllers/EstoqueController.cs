@@ -26,24 +26,6 @@ namespace TesteWeb.Controllers
                           Problem("Entity set 'Contexto.Estoque'  is null.");
         }
 
-        // GET: Estoque/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Estoque == null)
-            {
-                return NotFound();
-            }
-
-            var estoque = await _context.Estoque
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (estoque == null)
-            {
-                return NotFound();
-            }
-
-            return View(estoque);
-        }
-
         // GET: Estoque/Create
         public IActionResult Create()
         {
