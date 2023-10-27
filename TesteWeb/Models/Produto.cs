@@ -22,8 +22,14 @@ namespace TesteWeb.Models
         [Display(Name = "Gênero")]
         public string? Genero { get; set; }
 
-        [Column("Preco")] // Adicione esta linha para representar o preço
+        [Column("Preco")]
         [Display(Name = "Preço")]
-        public decimal Preco { get; set; } // Propriedade para representar o preço
+        public decimal Preco { get; set; }
+
+        [Column("Quantidade")]
+        [Display(Name = "Quantidade")]
+        public int Quantidade { get; set; }
+
+    
     }
 }

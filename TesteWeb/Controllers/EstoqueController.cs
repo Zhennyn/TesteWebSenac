@@ -26,6 +26,23 @@ namespace TesteWeb.Controllers
                           Problem("Entity set 'Contexto.Estoque'  is null.");
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || _context.Estoque == null)
+            {
+                return NotFound();
+            }
+
+            var estoque = await _context.Estoque
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (estoque == null)
+            {
+                return NotFound();
+            }
+
+            return View(estoque);
+        }
+
         // GET: Estoque/Create
         public IActionResult Create()
         {
@@ -37,7 +54,7 @@ namespace TesteWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Autor,Genero,Preco")] Estoque estoque)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Autor,Genero,Preco,Quantidade")] Estoque estoque)
         {
             if (ModelState.IsValid)
             {
@@ -69,7 +86,7 @@ namespace TesteWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Autor,Genero,Preco")] Estoque estoque)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Autor,Genero,Preco,Quantidade")] Estoque estoque)
         {
             if (id != estoque.Id)
             {

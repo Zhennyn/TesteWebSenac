@@ -9,87 +9,87 @@ using TesteWeb.Models;
 
 namespace TesteWeb.Controllers
 {
-    public class CadastrosController : Controller
+    public class FuncionarioController : Controller
     {
         private readonly Contexto _context;
 
-        public CadastrosController(Contexto context)
+        public FuncionarioController(Contexto context)
         {
             _context = context;
         }
 
-        // GET: Cadastros
+        // GET: Funcionario
         public async Task<IActionResult> Index()
         {
-              return _context.Cadastro != null ? 
-                          View(await _context.Cadastro.ToListAsync()) :
-                          Problem("Entity set 'Contexto.Cadastro'  is null.");
+              return _context.Funcionario != null ? 
+                          View(await _context.Funcionario.ToListAsync()) :
+                          Problem("Entity set 'Contexto.Funcionario'  is null.");
         }
 
-        // GET: Cadastros/Details/5
-        public async Task<IActionResult> Details(string id)
+        // GET: Funcionario/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Cadastro == null)
+            if (id == null || _context.Funcionario == null)
             {
                 return NotFound();
             }
 
-            var cadastro = await _context.Cadastro
+            var funcionario = await _context.Funcionario
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (cadastro == null)
+            if (funcionario == null)
             {
                 return NotFound();
             }
 
-            return View(cadastro);
+            return View(funcionario);
         }
 
-        // GET: Cadastros/Create
+        // GET: Funcionario/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Cadastros/Create
+        // POST: Funcionario/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,Senha")] Cadastro cadastro)
+        public async Task<IActionResult> Create([Bind("Id,Login,Email,Senha,Perfil")] Funcionario funcionario)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cadastro);
+                _context.Add(funcionario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(cadastro);
+            return View(funcionario);
         }
 
-        // GET: Cadastros/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        // GET: Funcionario/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Cadastro == null)
+            if (id == null || _context.Funcionario == null)
             {
                 return NotFound();
             }
 
-            var cadastro = await _context.Cadastro.FindAsync(id);
-            if (cadastro == null)
+            var funcionario = await _context.Funcionario.FindAsync(id);
+            if (funcionario == null)
             {
                 return NotFound();
             }
-            return View(cadastro);
+            return View(funcionario);
         }
 
-        // POST: Cadastros/Edit/5
+        // POST: Funcionario/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Email,Senha")] Cadastro cadastro)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Login,Email,Senha,Perfil")] Funcionario funcionario)
         {
-            if (id != cadastro.Id)
+            if (id != funcionario.Id)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace TesteWeb.Controllers
             {
                 try
                 {
-                    _context.Update(cadastro);
+                    _context.Update(funcionario);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CadastroExists(cadastro.Id))
+                    if (!FuncionarioExists(funcionario.Id))
                     {
                         return NotFound();
                     }
@@ -114,49 +114,49 @@ namespace TesteWeb.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(cadastro);
+            return View(funcionario);
         }
 
-        // GET: Cadastros/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        // GET: Funcionario/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Cadastro == null)
+            if (id == null || _context.Funcionario == null)
             {
                 return NotFound();
             }
 
-            var cadastro = await _context.Cadastro
+            var funcionario = await _context.Funcionario
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (cadastro == null)
+            if (funcionario == null)
             {
                 return NotFound();
             }
 
-            return View(cadastro);
+            return View(funcionario);
         }
 
-        // POST: Cadastros/Delete/5
+        // POST: Funcionario/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Cadastro == null)
+            if (_context.Funcionario == null)
             {
-                return Problem("Entity set 'Contexto.Cadastro'  is null.");
+                return Problem("Entity set 'Contexto.Funcionario'  is null.");
             }
-            var cadastro = await _context.Cadastro.FindAsync(id);
-            if (cadastro != null)
+            var funcionario = await _context.Funcionario.FindAsync(id);
+            if (funcionario != null)
             {
-                _context.Cadastro.Remove(cadastro);
+                _context.Funcionario.Remove(funcionario);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CadastroExists(string id)
+        private bool FuncionarioExists(int id)
         {
-          return (_context.Cadastro?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Funcionario?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

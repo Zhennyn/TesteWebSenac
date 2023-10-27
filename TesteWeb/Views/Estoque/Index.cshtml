@@ -1,53 +1,55 @@
 ﻿@model IEnumerable<TesteWeb.Models.Estoque>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tabela de Produtos";
 }
 
-<h1>Index</h1>
+<h1>Tabela de produtos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a type="button" class="btn btn-primary" asp-action="Create">Crie um novo produto</a>
 </p>
-<table class="table">
+<table class="table" id="table-estoque">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Autor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Genero)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Preco)
-            </th>
-            <th></th>
+            <th scope="col">Nome</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Gênero</th>
+            <th scope="col">Preço</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Autor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genero)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Preco)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Autor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Preco)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section Scripts
+{
+    <script>
+        let table = new DataTable('#table-estoque');
+
+    </script>
+
+}
