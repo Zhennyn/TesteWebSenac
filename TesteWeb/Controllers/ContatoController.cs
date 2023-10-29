@@ -9,87 +9,87 @@ using TesteWeb.Models;
 
 namespace TesteWeb.Controllers
 {
-    public class EstoqueController : Controller
+    public class ContatoController : Controller
     {
         private readonly Contexto _context;
 
-        public EstoqueController(Contexto context)
+        public ContatoController(Contexto context)
         {
             _context = context;
         }
 
-        // GET: Estoque
+        // GET: Contato
         public async Task<IActionResult> Index()
         {
-              return _context.Estoque != null ? 
-                          View(await _context.Estoque.ToListAsync()) :
-                          Problem("Entity set 'Contexto.Estoque'  is null.");
+              return _context.Contato != null ? 
+                          View(await _context.Contato.ToListAsync()) :
+                          Problem("Entity set 'Contexto.Contato'  is null.");
         }
 
-        // GET: Estoque/Details/5
+        // GET: Contato/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Estoque == null)
+            if (id == null || _context.Contato == null)
             {
                 return NotFound();
             }
 
-            var estoque = await _context.Estoque
+            var contato = await _context.Contato
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (estoque == null)
+            if (contato == null)
             {
                 return NotFound();
             }
 
-            return View(estoque);
+            return View(contato);
         }
 
-        // GET: Estoque/Create
+        // GET: Contato/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Estoque/Create
+        // POST: Contato/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Autor,Genero,Preco,QuantidadeEstoque")] Estoque estoque)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Email,Telefone,Endereco,Cidade,Estado,CEP,DataCadastro")] Contato contato)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(estoque);
+                _context.Add(contato);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(estoque);
+            return View(contato);
         }
 
-        // GET: Estoque/Edit/5
+        // GET: Contato/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Estoque == null)
+            if (id == null || _context.Contato == null)
             {
                 return NotFound();
             }
 
-            var estoque = await _context.Estoque.FindAsync(id);
-            if (estoque == null)
+            var contato = await _context.Contato.FindAsync(id);
+            if (contato == null)
             {
                 return NotFound();
             }
-            return View(estoque);
+            return View(contato);
         }
 
-        // POST: Estoque/Edit/5
+        // POST: Contato/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Autor,Genero,Preco,QuantidadeEstoque")] Estoque estoque)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Email,Telefone,Endereco,Cidade,Estado,CEP,DataCadastro")] Contato contato)
         {
-            if (id != estoque.Id)
+            if (id != contato.Id)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace TesteWeb.Controllers
             {
                 try
                 {
-                    _context.Update(estoque);
+                    _context.Update(contato);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EstoqueExists(estoque.Id))
+                    if (!ContatoExists(contato.Id))
                     {
                         return NotFound();
                     }
@@ -114,49 +114,49 @@ namespace TesteWeb.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(estoque);
+            return View(contato);
         }
 
-        // GET: Estoque/Delete/5
+        // GET: Contato/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Estoque == null)
+            if (id == null || _context.Contato == null)
             {
                 return NotFound();
             }
 
-            var estoque = await _context.Estoque
+            var contato = await _context.Contato
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (estoque == null)
+            if (contato == null)
             {
                 return NotFound();
             }
 
-            return View(estoque);
+            return View(contato);
         }
 
-        // POST: Estoque/Delete/5
+        // POST: Contato/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Estoque == null)
+            if (_context.Contato == null)
             {
-                return Problem("Entity set 'Contexto.Estoque'  is null.");
+                return Problem("Entity set 'Contexto.Contato'  is null.");
             }
-            var estoque = await _context.Estoque.FindAsync(id);
-            if (estoque != null)
+            var contato = await _context.Contato.FindAsync(id);
+            if (contato != null)
             {
-                _context.Estoque.Remove(estoque);
+                _context.Contato.Remove(contato);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EstoqueExists(int id)
+        private bool ContatoExists(int id)
         {
-          return (_context.Estoque?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Contato?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

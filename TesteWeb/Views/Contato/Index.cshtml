@@ -1,0 +1,73 @@
+﻿@model IEnumerable<TesteWeb.Models.Contato>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de clientes</h1>
+
+<p>
+    <a class="btn btn-secondary" asp-action="Create">Adicionar contato</a>
+</p>
+<table id="table-contato" class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Cidade</th>
+            <th scope="col">Estado</th>
+            <th scope="col">CEP</th>
+            <th scope="col">Data de cadastro</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Endereco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCadastro)
+            </td>
+            <td>
+                <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts
+            {
+    <script>
+        $(document).ready(function () {
+            $('#table-contato').DataTable();
+
+        });
+
+    </script>
+
+}

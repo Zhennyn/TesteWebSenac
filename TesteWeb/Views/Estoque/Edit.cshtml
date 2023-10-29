@@ -30,23 +30,21 @@
             </div>
             <div class="form-group">
                 <label asp-for="Preco" class="control-label"></label>
-                <input asp-for="Preco" class="form-control" type="number" step="0.01" />
+                <input asp-for="Preco" class="form-control" type="number"/>
                 <span asp-validation-for="Preco" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Quantidade" class="control-label"></label>
-                <input asp-for="Quantidade" class="form-control" step="1" />
+                <input asp-for="Quantidade" class="form-control" />
                 <span asp-validation-for="Quantidade" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Salvar" class="btn btn-primary" /> |
+                <a class="btn btn-secondary" asp-action="Index">Voltar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a class="btn btn-secondary" asp-action="Index">Voltar</a>
 </div>
 
 @section Scripts {

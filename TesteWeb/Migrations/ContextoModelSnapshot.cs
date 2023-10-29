@@ -22,34 +22,65 @@ namespace TesteWeb.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("TesteWeb.Models.Contato", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CEP")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cidade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Endereco")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Estado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contato");
+                });
+
             modelBuilder.Entity("TesteWeb.Models.Estoque", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Autor")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Autor");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Genero")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Genero");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Nome");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("Preco");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Quantidade")
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("Quantidade");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 

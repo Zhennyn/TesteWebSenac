@@ -9,7 +9,7 @@
 <p>
     <a class="btn btn-secondary" asp-action="Create">Criar novo usuário</a>
 </p>
-<table id="#table-estoque" class="table">
+<table id="table-funcionario" class="table">
     <thead>
         <tr>
             <th scope="col">Login</th>
@@ -35,9 +35,9 @@
                 @Html.DisplayFor(modelItem => item.DataCadastro)
             </td>
             <td>
-                <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
             </td>
         </tr>
 }
@@ -47,7 +47,10 @@
 @section Scripts
 {
     <script>
-        let table = new DataTable('#table-cadastro');
+        $(document).ready(function () {
+            $('#table-funcionario').DataTable();
+                
+        });
 
     </script>
 

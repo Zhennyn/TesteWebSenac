@@ -12,7 +12,6 @@ namespace TesteWeb.Models
 
     public DbSet<Estoque> Estoque { get; set; }
     public DbSet<Funcionario> Funcionario { get; set; }
-    public DbSet<Movimentação> Movimentação { get; set; }
-    public DbSet<Pedido> Pedido { get; set; }
+    public DbSet<Contato> Contato { get; set;}
     }
 }
